@@ -1,0 +1,17 @@
+{
+  "name": "pi-model-tabs",
+  "version": "0.1.0",
+  "private": true,
+  "description": "pi 模型选择器扩展：带 provider 标签页分组（Tab 切换 provider，Ctrl+L / /models 打开）",
+  "keywords": ["pi-package"],
+  "license": "MIT",
+  "peerDependencies": {
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-agent-core": "*",
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*"
+  },
+  "pi": {
+    "extensions": ["./extensions"]
+  }
+}
