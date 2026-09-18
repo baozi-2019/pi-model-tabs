@@ -17,14 +17,20 @@ pi 模型选择器扩展：将可用模型按 provider 分组为标签页，配�
 ## 安装
 
 ```bash
-# 从本地路径安装（在项目根目录执行）
-pi install /home/baozi/study/pi-model-tabs
+# 从 GitHub 安装（推荐）
+pi install git:github.com/baozi-2019/pi-model-tabs
+
+# 锁定分支 / 标签 / 提交
+pi install git:github.com/baozi-2019/pi-model-tabs@dev
+
+# 从本地路径安装（开发调试）
+pi install /home/baozi/study/pi-extensions/pi-model-tabs
 
 # 安装后在 pi 中启用扩展
 pi config
 ```
 
-安装写入用户级配置 `~/.pi/agent/settings.json`；如需仅当前项目启用，加 `-l` 写入 `.pi/settings.json`。
+默认写入用户级配置 `~/.pi/agent/settings.json`；如需仅当前项目启用，加 `-l` 写入 `.pi/settings.json`。
 
 ## 快捷键前置配置（必需）
 
