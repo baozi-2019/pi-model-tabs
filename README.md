@@ -36,7 +36,7 @@ pi config
 
 ```bash
 # 更新到指定 tag（推荐，锁定版本）
-pi install git:github.com/baozi-2019/pi-model-tabs@v1.1
+pi install git:github.com/baozi-2019/pi-model-tabs@v1.2
 
 # 更新到 dev 分支最新提交
 pi install git:github.com/baozi-2019/pi-model-tabs@dev
