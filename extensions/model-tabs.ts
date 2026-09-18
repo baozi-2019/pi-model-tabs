@@ -1,7 +1,7 @@
 /**
  * model-tabs: 带 provider 标签页分组的模型选择器
  *
- * 用法：在 pi 会话中输入 /models，或按 Ctrl+L
+ * 用法：在 pi 会话中输入 /models，或按 Ctrl+M
  *       （需配合 ~/.pi/agent/keybindings.json 解绑内置 app.model.select）
  * 交互：Tab / Shift+Tab 切换 provider 标签页，打字搜索，↑↓ 导航，
  *       Enter 切换模型，Ctrl+S 切换并保存为全局默认，Esc 取消。
@@ -354,7 +354,7 @@ async function saveDefaultModel(provider: string, modelId: string): Promise<void
   await writeFile(settingsPath, JSON.stringify(settings, null, 2) + "\n", "utf8");
 }
 
-/** 打开模型选择器对话框（/models 命令与 Ctrl+L 快捷键共用） */
+/** 打开模型选择器对话框（/models 命令与 Ctrl+M 快捷键共用） */
 async function openModelTabs(pi: ExtensionAPI, ctx: ExtensionContext): Promise<void> {
   const registry = ctx.modelRegistry;
   const models = registry.getAvailable();
@@ -415,9 +415,8 @@ export default function (pi: ExtensionAPI) {
     },
   });
 
-  // 接管 Ctrl+L：需在 ~/.pi/agent/keybindings.json 中将内置 app.model.select 解绑，
-  // 否则扩展快捷键会因与内置键位冲突被跳过
-  pi.registerShortcut("ctrl+l", {
+  // 注册 Ctrl+M：与 pi 内置键位无冲突，无需用户解绑
+  pi.registerShortcut("ctrl+m", {
     description: "Select a model with provider tabs",
     handler: async (ctx) => {
       await openModelTabs(pi, ctx);

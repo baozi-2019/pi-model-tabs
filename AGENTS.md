@@ -4,7 +4,7 @@
 
 ## 1. 工程简介
 
-pi 模型选择器扩展：将可用模型按 provider 分组为标签页，配合搜索框快速切换模型。会话中输入 `/models` 或按 `Ctrl+L` 打开。
+pi 模型选择器扩展：将可用模型按 provider 分组为标签页，配合搜索框快速切换模型。会话中输入 `/models` 或按 `Ctrl+M` 打开。
 
 ## 2. 工程事实
 
@@ -24,12 +24,12 @@ pi 模型选择器扩展：将可用模型按 provider 分组为标签页，配�
 - 禁止引入第三方运行时依赖；确需引入时在交付说明中说明理由。
 - 修改交互行为时，必须同步更新 README 的「使用说明」按键表与「实现要点」。
 - 快捷键一律经 `KeybindingsManager` 解析（`keybindings.matches` / `matchesKey`），不硬编码终端转义序列。
-- `Ctrl+L` 依赖用户在 `~/.pi/agent/keybindings.json` 解绑内置 `app.model.select`，改动相关键位时需在 README 保持该前置说明。
+- `Ctrl+M` 与 pi 内置键位无冲突，无需解绑配置；改动相关键位时需在 README 保持该说明。
 
 ## 4. 验证方式
 
 - 本工程无构建脚本与测试套件；验证方式为本地安装后加载：
-  `pi install /home/baozi/study/pi-extensions/pi-model-tabs`，在 pi 中启用扩展，用 `/models` 与 `Ctrl+L` 走查 README「使用说明」全部按键。
+  `pi install /home/baozi/study/pi-extensions/pi-model-tabs`，在 pi 中启用扩展，用 `/models` 与 `Ctrl+M` 走查 README「使用说明」全部按键。
 - 改动类型敏感（快捷键、settings.json 读写）时，除走查外还需确认 `~/.pi/agent/settings.json` 的 `defaultProvider` / `defaultModel` 按预期读写。
 - 无法走查验证时，在交付说明中明确写出。
 

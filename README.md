@@ -2,7 +2,7 @@
 
 pi 模型选择器扩展：将可用模型按 provider 分组为标签页，配合搜索框快速切换模型。
 
-在 pi 会话中输入 `/models`，或按 `Ctrl+L` 打开选择器。
+在 pi 会话中输入 `/models`，或按 `Ctrl+M` 打开选择器。
 
 ## 功能特性
 
@@ -32,17 +32,21 @@ pi config
 
 默认写入用户级配置 `~/.pi/agent/settings.json`；如需仅当前项目启用，加 `-l` 写入 `.pi/settings.json`。
 
-## 快捷键前置配置（必需）
+## 更新
 
-扩展注册了 `Ctrl+L` 快捷键，与 pi 内置的 `app.model.select` 冲突，需要先解绑内置键位，否则扩展快捷键会被跳过。
+```bash
+# 更新到指定 tag（推荐，锁定版本）
+pi install git:github.com/baozi-2019/pi-model-tabs@v1.1
 
-编辑 `~/.pi/agent/keybindings.json`，将 `app.model.select` 从 `ctrl+l` 改绑或移除，例如：
-
-```json
-{
-  "app.model.select": "ctrl+o"
-}
+# 更新到 dev 分支最新提交
+pi install git:github.com/baozi-2019/pi-model-tabs@dev
 ```
+
+`pi install` 对已安装的 git 包执行更新并改写 settings 中的 ref；更新后在 pi 中重载扩展即可生效。
+
+## 快捷键说明
+
+扩展注册 `Ctrl+M` 打开选择器。该键位与 pi 内置快捷键无冲突，无需额外解绑配置；如曾被其他扩展占用，可在 `~/.pi/agent/keybindings.json` 中调整。
 
 ## 使用说明
 
@@ -74,7 +78,7 @@ pi-model-tabs/
 
 ## 实现要点
 
-- 入口 `export default function (pi)` 注册 `/models` 命令与 `ctrl+l` 快捷键，均调用 `openModelTabs`
+- 入口 `export default function (pi)` 注册 `/models` 命令与 `ctrl+m` 快捷键，均调用 `openModelTabs`
 - `openModelTabs` 从 `ctx.modelRegistry` 拉取模型列表，按 provider 分组生成标签页，通过 `ctx.ui.custom` 挂载自定义 TUI 组件
 - `ModelTabsSelector` 继承 pi-tui 的 `Container` 并实现 `Focusable`，将焦点转发给内部 `Input`，保证 IME 光标定位正确
 - 选择结果经回调传出后调用 `pi.setModel(result.model)` 切换；`saveDefault` 为 true 时由 `saveDefaultModel` 读取并改写 `settings.json` 的 `defaultProvider` / `defaultModel` 字段（文件不存在或解析失败时从空对象重建）
